@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct processo processo;
+
+#define max_processo 5
+
+struct processo{
+    int front, real;
+    int a[max_processo];
+}
+
+processo * create(){
+    processo *q = malloc(sizeof(processo));
+    if(q){
+        q->front=-1;
+        q->real = -1;
+    }
+    return q;
+}
+void destroy (processo*q){
+    free(q);
+}
+int insert(processo *q, int i){
+    if(q){
+        if(q-> real+1<max_processo){
+            q->real=q->real+1;
+            q->a[q->real]=i;
+            return 1;
+        }
+        
+    }
+    
+    return 0;
+}
+
+int processo_remover(processo*q, int*i){
+    if(q){
+        *i = q-> a[ q->front];
+        if(q->front == q->real){
+            q->front=-1;
+            q->real=-1;
+    }else{
+        q->front=q->front+1;
+        return 1;
+    }
+}
+return 0;
+}
